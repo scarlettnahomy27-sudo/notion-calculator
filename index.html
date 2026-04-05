@@ -3,96 +3,62 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 
-body {
-  margin: 0 auto;
-  text-align: center;
-  font-size: 23px;
+body{
+margin:0;
+font-family: monospace;
 }
 
-.calculator {
-  display: inline-block;
-  background: #111111;
-  margin: 1% 0;
-  color: #e6e6e6;
-  border: 2px solid #2a2a2a;
-  border-radius: 8px;
-  box-shadow: 0 0 0 1px #2a2a2a;
-  max-width: 240px;
-  padding: 5px;
-}
-
-.calculator .button {
-  font-size: x-large;
-  width: 2em;
-  min-height: 2em;
-  margin: 0.8%;
-  border-radius: 20%;
-  border: 1px solid #3a3a3a;
-  font-family: monospace;
-  background: #1a1a1a;
-  color: #e6e6e6;
-}
-
-/* CHANGED FROM GREEN TO GRAY */
-.calculator .accent{
-   background: #2a2a2a;
-}
-
-/* spacing blocks */
-.calculator .space {
-  width: 2.4em;
-  min-height: 2.4em;
-  margin: 0.5%;
-}
-
-/* hover */
-.calculator button:hover {
-  background: #3a3a3a;
-  transform: scale(0.92);
-}
-
-/* active press */
-.button:active {
-  background: #555555;
-  color: white;
-  transform: scale(0.85);
+.calculator{
+display:inline-block;
+background:#111;
+padding:8px;
+border-radius:10px;
+border:1px solid #2a2a2a;
 }
 
 #screen{
-  border: 1px solid #3a3a3a;
-  border-radius: 6px;
-  width: 85%;
-  height: 50px;
-  margin: 5%;
-  text-align: right;
-  font-size: 28px;
-  font-family: monospace;
-  background-color: #000000;
-  color: #ffffff;
-  padding-right: 5px;
+width:92%;
+height:45px;
+margin:6px;
+background:#000;
+color:white;
+border:1px solid #333;
+border-radius:6px;
+text-align:right;
+font-size:22px;
+padding-right:6px;
 }
 
-#clean {
-  background: #2a2a2a;
-  color: white;
+.button{
+width:40px;
+height:40px;
+margin:4px;
+border-radius:20%;
+border:1px solid #333;
+background:#1a1a1a;
+color:#e6e6e6;
+font-size:18px;
 }
 
-.rows{
-  margin: 5%;
+.accent{
+background:#2a2a2a;
 }
 
-.calculator__row1,
-.calculator__row2,
-.calculator__row3,
-.calculator__row4,
-.calculator__row5 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.button:hover{
+background:#3a3a3a;
+}
+
+.button:active{
+background:#555;
+color:white;
+}
+
+.row{
+display:flex;
+justify-content:center;
 }
 
 </style>
@@ -102,72 +68,72 @@ body {
 
 <div class="calculator">
 
-<input type="text" id="screen">
+<input id="screen" type="text">
 
-<div class="rows">
-
-<div class="calculator__row1">
+<div class="row">
 <button class="button accent">(</button>
 <button class="button accent">)</button>
-<div class="space"></div>
-<div class="space"></div>
-<button class="button" id="clean">AC</button>
+<button class="button accent">%</button>
+<button class="button accent">AC</button>
 </div>
 
-<div class="calculator__row2">
-<button class="button accent">x^</button>
+<div class="row">
 <button class="button">7</button>
 <button class="button">8</button>
 <button class="button">9</button>
-<button class="button accent">*</button>
-</div>
-
-<div class="calculator__row3">
-<button class="button accent">%</button>
-<button class="button">4</button>
-<button class="button">5</button>
-<button class="button">6</button>
 <button class="button accent">/</button>
 </div>
 
-<div class="calculator__row4">
-<button class="button accent">√</button>
+<div class="row">
+<button class="button">4</button>
+<button class="button">5</button>
+<button class="button">6</button>
+<button class="button accent">*</button>
+</div>
+
+<div class="row">
 <button class="button">1</button>
 <button class="button">2</button>
 <button class="button">3</button>
 <button class="button accent">-</button>
 </div>
 
-<div class="calculator__row5">
-<div class="space"></div>
-<button class="button accent">.</button>
+<div class="row">
 <button class="button">0</button>
+<button class="button accent">.</button>
 <button class="button accent">=</button>
 <button class="button accent">+</button>
 </div>
 
 </div>
-</div>
 
 <script>
-var display = document.getElementById("screen");
-var buttons = document.getElementsByClassName("button");
 
-Array.prototype.forEach.call(buttons, function(button) {
-button.addEventListener("click", function() {
+let screen=document.getElementById("screen");
 
-if (button.textContent != "=" && button.textContent != "AC") {
-display.value += button.textContent;
+document.querySelectorAll(".button").forEach(btn=>{
+btn.onclick=()=>{
 
-} else if (button.textContent === "=") {
-display.value = eval(display.value);
-
-} else if (button.textContent === "AC") {
-display.value = "";
+if(btn.textContent=="AC"){
+screen.value="";
 }
 
+else if(btn.textContent=="="){
+try{
+screen.value=eval(screen.value);
+}
+catch{
+screen.value="error";
+}
+}
+
+else{
+screen.value+=btn.textContent;
+}
+
+}
 });
-});
+
 </script>
 
 </body>
