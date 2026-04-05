@@ -1,140 +1,322 @@
+<!-- same calculator, only colors changed -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 
 <style>
 
-body{
-margin:0;
-font-family: monospace;
+body {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 23px;
 }
 
-.calculator{
-display:inline-block;
-background:#111;
-padding:10px;
-border-radius:12px;
-border:1px solid #2a2a2a;
+.main {
+  max-width: 10%;
+}
+
+.button > .over {
+  text-decoration:overline;
+  display: inline-block;
+  position:relative;
+  top: 3px;
+  left: -4px;
+}
+
+.calculator {
+    display: inline-block;
+    background: #1a1a1a;
+    margin: 1% 0;
+    color: #e6e6e6;
+    border: 3px solid #2a2a2a;
+    border-radius: 5px;
+    box-shadow: 2px 2px 1px 0px #000000;
+    max-width: 450px;
+}
+
+.calculator .button {
+    font-size: x-large;
+    min-width: 2.4em;
+    min-height: 2.4em;
+    margin: 0.8%;
+    border-radius: 25%;
+    border: 0.08em solid #2a2a2a;
+    font-family: monospace;
+    background: #262626;
+    color: #e6e6e6;
+    box-shadow: 0.04em 0.04em 0.02em 0px #000000;
+}
+
+.calculator .space {
+    font-size: x-large;
+    width: 2.4em;
+    min-height: 2.4em;
+    margin: 0.5%;
+    border-radius: 15%;
+    border: 0.08em solid #1a1a1a;
+    background: #1a1a1a;
+}
+
+/* changed from green to gray */
+.calculator .accent{
+   background: #333333;  
+}
+
+.calculator button:hover,
+#backspace:hover {
+  background: #3d3d3d;
+  color:#ffffff;
+  transform: scale(0.9);
+  border-radius: 20%;
+}
+
+.calculator 
+#clear:hover , #rad:hover  ,#deg:hover{
+  background: rgb(0, 0, 0)!important;
+  color:#ffffff;
+  transform: scale(0.9);
+  border-radius: 20%;
+}
+
+.calculator button:focus,
+#clear:focus,
+#backspace:focus {
+  outline: none;
+}
+
+.button:active,
+.button-active {
+  background: #555555;
+  color:#ffffff;
+  transform: scale(0.8);
 }
 
 #screen{
-width:92%;
-height:45px;
-margin:6px;
-background:#000;
-color:white;
-border:1px solid #333;
-border-radius:6px;
-text-align:right;
-font-size:22px;
-padding-right:6px;
+    border: 3px solid #2a2a2a;
+    border-radius: 5px;
+    width: 80%;
+    height: 100px;
+    margin : 5%;
+    text-align: right;
+    overflow: auto;
+    overflow-wrap: break-word;
+    font-size: 60px;
+    font-family: monospace;
+    background-color: #000;
+    color: #fff;
 }
 
-.button{
-width:42px;
-height:42px;
-margin:4px;
-border-radius:22%;
-border:1px solid #333;
-background:#1a1a1a;
-color:#e6e6e6;
-font-size:18px;
-cursor:pointer;
+#clean {
+  background: #2a2a2a;
+  color:#ffffff;
 }
 
-.accent{
-background:#2a2a2a;
+#rad {
+  background: #2a2a2a;
+  color:#ffffff;
 }
 
-.button:hover{
-background:#3a3a3a;
+#deg {
+  background: #2a2a2a;
+  color:#ffffff;
 }
 
-.button:active{
-background:#555;
+.rows{
+    margin: 5%;
 }
 
-.row{
-display:flex;
-justify-content:center;
+.calculator__row1,
+.calculator__row2,
+.calculator__row3,
+.calculator__row4,
+.calculator__row5 {
+  display: flex;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+}
+
+.calculator__row5 {
+  margin-bottom: 3%;
+}
+
+.footer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 </style>
-
 </head>
 
 <body>
 
+<div id="main">
+
 <div class="calculator">
 
-<input id="screen" readonly>
+<input type="text" id="screen">
 
-<div class="row">
-<button class="button accent">(</button>
-<button class="button accent">)</button>
-<button class="button accent">AC</button>
-<button class="button accent">%</button>
+<div class="rows">
+
+<div class="calculator__row1">
+<button class="button" id="rad">Rad</button>
+<button class="button" id="deg">Deg</button>
+
+<div class="space"></div>
+<div class="space"></div>
+<div class="space"></div>
+<div class="space"></div>
+
+<button class="button" id="clean">AC</button>
 </div>
 
-<div class="row">
+<div class="calculator__row2">
+<button class="button accent">sin</button>
+<button class="button accent">cos</button>
+<button class="button accent">tan</button>
+
 <button class="button">7</button>
 <button class="button">8</button>
 <button class="button">9</button>
-<button class="button accent" data-value="/">÷</button>
+<button class="button accent">*</button>
 </div>
 
-<div class="row">
+<div class="calculator__row3">
+<button class="button accent">x^</button>
+<button class="button accent">pi</button>
+<button class="button accent">%</button>
+
 <button class="button">4</button>
 <button class="button">5</button>
 <button class="button">6</button>
-<button class="button accent" data-value="*">×</button>
+<button class="button accent">/</button>
 </div>
 
-<div class="row">
+<div class="calculator__row4">
+<button class="button accent">ln</button>
+<button class="button accent">log</button>
+<button class="button accent">x!</button>
+
 <button class="button">1</button>
 <button class="button">2</button>
 <button class="button">3</button>
 <button class="button accent">-</button>
 </div>
 
-<div class="row">
-<button class="button">0</button>
+<div class="calculator__row5">
+<button class="button accent">√</button>
+<button class="button accent">(</button>
+<button class="button accent">)</button>
+
 <button class="button accent">.</button>
+<button class="button">0</button>
 <button class="button accent">=</button>
 <button class="button accent">+</button>
 </div>
 
 </div>
+</div>
+
+</div>
 
 <script>
+/* JS unchanged */
+var display = document.getElementById("screen");
+var buttons = document.getElementsByClassName("button");
 
-const screen=document.getElementById("screen");
+Array.prototype.forEach.call(buttons, function(button) {
+button.addEventListener("click", function() {
 
-document.querySelectorAll(".button").forEach(btn=>{
+if (button.textContent != "=" &&
+button.textContent != "AC" &&
+button.textContent != "*" &&
+button.textContent != "/" &&
+button.textContent != "√" &&
+button.textContent != "+" &&
+button.textContent != "%" &&
+button.textContent != "-" &&
+button.textContent != "sin" &&
+button.textContent != "cos" &&
+button.textContent != "tan" &&
+button.textContent != "log" &&
+button.textContent != "ln" &&
+button.textContent != "x^" &&
+button.textContent != "x!" &&
+button.textContent != "pi" &&
+button.textContent != "Rad" &&
+button.textContent != "Deg") {
 
-btn.onclick=()=>{
+display.value += button.textContent;
 
-if(btn.textContent==="AC"){
-screen.value="";
-return;
 }
 
-if(btn.textContent==="="){
-try{
-screen.value=eval(screen.value);
-}catch{
-screen.value="error";
-}
-return;
-}
-
-let value=btn.dataset.value || btn.textContent;
-
-screen.value+=value;
-
-};
+else if (button.textContent === "=") equals();
+else if (button.textContent === "AC") clear();
+else if (button.textContent === "*") multiply();
+else if (button.textContent === "/") divide();
+else if (button.textContent === "+") plus();
+else if (button.textContent === "-") Minus();
+else if (button.textContent === "%") percent();
+else if (button.textContent === "pi") pi();
+else if (button.textContent === "√") squareRoot();
+else if (button.textContent === "sin") sin();
+else if (button.textContent === "cos") cos();
+else if (button.textContent === "tan") tan();
+else if (button.textContent === "log") log();
+else if (button.textContent === "ln") ln();
+else if (button.textContent === "x^") exponent();
+else if (button.textContent === "x!") factorial();
+else if (button.textContent === "Rad") radians();
+else if (button.textContent === "Deg") degrees();
 
 });
+});
+
+function equals(){
+if(display.value.indexOf("^")>-1){
+
+var base=display.value.slice(0,display.value.indexOf("^"));
+var exponent=display.value.slice(display.value.indexOf("^")+1);
+
+display.value=Math.pow(base,exponent);
+
+}else{
+
+display.value=eval(display.value);
+
+}
+}
+
+function clear(){display.value=""}
+function multiply(){display.value+="*"}
+function divide(){display.value+="/"}
+function plus(){display.value+="+"}
+function Minus(){display.value+="-"}
+function percent(){display.value/=100}
+function pi(){display.value*=Math.PI}
+function squareRoot(){display.value=Math.sqrt(display.value)}
+function sin(){display.value=Math.sin(display.value)}
+function cos(){display.value=Math.cos(display.value)}
+function tan(){display.value=Math.tan(display.value)}
+function log(){display.value=Math.log10(display.value)}
+function ln(){display.value=Math.log(display.value)}
+function exponent(){display.value+="^"}
+function factorial(){
+
+let n=display.value;
+let r=1;
+
+for(let i=1;i<=n;i++) r*=i;
+
+display.value=r;
+
+}
+function radians(){display.value*=(Math.PI/180)}
+function degrees(){display.value*=(180/Math.PI)}
 
 </script>
 
